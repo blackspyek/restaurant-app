@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+
+    display: flex;
+    margin: 10% 2% 10% 2%;
+    gap: 5%;
+    justify-content: center;
+    flex-wrap: wrap;
+
+}
+
+footer {
+    flex-shrink: 0;
+}
+
+#logo {
+    margin: 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: lighter;
+    font-size: 28px;
+    font-style: italic;
+    letter-spacing: 0.1rem;
+    position: relative;
+}
+
+#logo::before {
+    content: "";
+    position: absolute;
+    top: 0.64em;
+    left: -0.06em;
+    border-top: 0.2em solid #008C45;
+    border-right: .2em solid transparent;
+
+
+}
+
+#logo::after {
+    content: "";
+    position: absolute;
+    bottom: .5em;
+    right: -0.12em;
+    border-bottom: 0.2em solid #CD212A;
+    border-left: .2em solid transparent;
+}
+
+#multi-category {
+    display: grid;
+    grid-template-rows: 50% 50%;
+}
+
+.category {
+    text-align: center;
+    flex-grow: 1;
+}
+
+.category>table>tbody>tr,
+.s-category>table>tbody>tr {
+    display: grid;
+    grid-template-columns: minmax(200px, 500px) auto;
+
+}
+
+.quant {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: lighter;
+    font-size: smaller;
+    display: block;
+}
+
+.t-category {
+    font-size: 54px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600 !important;
+    color: #3A3333;
+}
+
+.meal {
+    text-align: left;
+}
+
+.name {
+    font-size: 28px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400 !important;
+
+    font-size: 28px;
+    color: #270D0D;
+}
+
+.desc {
+
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 16px;
+    color: #270D0D;
+}
+
+#basket {
+    text-align: center;
+    list-style-type: none !important;
+    padding: 0;
+}
+
+#BasketText {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400 !important;
+    border-top: .2px solid black;
+    padding-top: .5rem;
+}
+
+.item {
+    display: table-caption;
+}
+
+#paymentmethod {
+    width: calc(30% + .5rem);
+    min-width: calc(180px);
+    height: 22px;
+}
+
+input[type="text"],
+input[type="email"] {
+
+    width: 30%;
+    min-width: 180px;
+    height: 22px;
+}
+
+
+
+input:invalid{
+    border: 1px dashed red;
+}
+input:valid{
+    border: 1px solid green;
+}
+
+
+
+.quantity {
+    width: 40px;
+    /* Adjust the width value as per your desired size */
+}
+
+@media (max-width:547px) {
+    form {
+        margin-bottom: 10px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    #basketValue {
+        text-align: center;
+        display: block;
+    }
+
+}
+
+@media (min-width:991px) {
+    #BasketText {
+        display: none;
+    }
+}
+
+@media (max-width:991px) {
+    #navbarNavAltMarkup {
+        padding-right: 0rem !important;
+    }
+}
+
+@media (max-width:991px) {
+
+    .dropdown-menu {
+        display: block !important;
+        position: static !important;
+        box-shadow: none !important;
+
+    }
+
+    .dropdown-toggle {
+        display: none;
+    }
+
+    #basket {
+        text-align: center;
+        list-style-type: none !important;
+        padding: 0;
+    }
+
+    #BasketText {
+        font-family: 'Inter', sans-serif;
+        font-weight: 400 !important;
+        border-top: .2px solid black;
+        padding-top: .5rem;
+
+    }
+}
+
+@media (min-width:817px) {
+    #logo {
+        margin: 16px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: lighter;
+        font-size: 54px;
+        font-style: italic;
+        letter-spacing: 0.1rem;
+    }
+
+    .dropdown {
+        display: block;
+    }
+
+    #logo::before {
+        content: "";
+        position: absolute;
+        top: 0.55em;
+        left: -0.06em;
+        border-top: 0.2em solid green;
+        border-right: .2em solid transparent;
+    }
+
+    main {
+        flex-wrap: nowrap;
+    }
+
+    #navbarNavAltMarkup {
+        padding-right: 5rem;
+    }
+
+
+}
+
+@media (min-width:5000px) {
+    #logo {
+        margin: 16px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: lighter;
+        font-size: 158px;
+        font-style: italic;
+        letter-spacing: 0.1rem;
+    }
+
+}
+
+.plus {
+    margin-right: 3%;
+    cursor: pointer;
+}

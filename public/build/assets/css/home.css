@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+#logo{
+    margin: 16px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: lighter;
+    font-size: 28px;
+    font-style: italic;
+    letter-spacing: 0.1rem;
+    position: relative;
+}
+#logo::before {
+    content: "";
+    position: absolute;
+    top: 0.64em;
+    left: -0.06em;
+    border-top: 0.2em solid #008C45;
+    border-right: .2em solid transparent;
+    
+
+  }
+#logo::after{
+    content: "";
+    position: absolute;
+    bottom: .5em;
+    right: -0.12em;
+    border-bottom: 0.2em solid #CD212A;
+    border-left: .2em solid transparent;
+}
+#offers{
+    display: none !important;
+}
+
+#m_h,#m_txt{margin: 1rem;}
+#m_h{
+    font-size: 28px;
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+    margin-top: 12vh !important;
+}
+#m_txt{
+    font-size: 16px;
+    font-weight: 300;
+    font-family: 'Open Sans', sans-serif;
+
+}
+#special{
+    color: gold;
+    font-weight: 700;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 26px;
+}
+p{
+    letter-spacing: 0;
+}
+#nav_baner{
+    font-size: 28px;
+    font-weight: 400;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    margin-top: 35px;
+}
+#carousel{
+    text-align: center;
+    padding: 4%;
+    display: block;
+}
+iframe{
+    width: 100%;
+    height: 300px;
+}
+#bg-gads
+{
+    background: rgb(255,255,255);
+background: linear-gradient(180deg, rgba(255,255,255,1) 10%, rgba(255,166,0,1) 100%);
+    padding-bottom: 5%;
+}
+.nav-btn{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    font-style: italic;
+    font-size: 28px;
+    padding: 1% 10% 1% 10% !important;
+    box-shadow: 3px 5px 4px 1px rgba(0, 0, 0, 0.25) !important;
+}
+.nav-btn:hover{
+    box-shadow: 3px 5px 4px 1px rgba(0, 0, 0, 0.55) !important;
+}
+.c_bg{
+    background-color: white;
+
+}
+#opening_time_h{
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 0.15rem;
+    font-family: 'Open Sans', sans-serif;
+    padding-top: 94px;
+    margin-left: 1rem;
+}
+table{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+}
+footer{
+
+    font-weight: 400;
+    font-size: 14px;
+}
+#f_txt{
+    margin: 0;
+}
+#btn-menu{
+    margin-bottom: 94px !important;
+}
+@media (min-width:641px){
+    #m_txt{
+        width: 50%;
+    }
+    #info{
+        padding-bottom: 12vh;
+    }
+    #navbarNavAltMarkup{
+        padding-right: 5rem;
+    }
+    #logo{
+        margin: 16px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: lighter;
+        font-size: 54px;
+        font-style: italic;
+        letter-spacing: 0.1rem;
+    }
+    #logo::before {
+        content: "";
+        position: absolute;
+        top: 0.55em;
+        left: -0.06em;
+        border-top: 0.2em solid green;
+        border-right: .2em solid transparent;
+      }
+    #m_h{
+        font-size: 54px;
+        font-weight: 600;
+        font-family: 'Open Sans', sans-serif;
+        margin-top: 35px;
+    }
+    #m_txt{
+        font-size: 16px;
+        font-weight: 300;
+        font-family: 'Open Sans', sans-serif;
+    
+    }
+    #carousel{
+        text-align: center;
+        padding: 4%;
+        display: none;
+    }
+    #nav_baner{
+        font-size: 54px;
+        letter-spacing: 4px;
+    }
+    .nav-btn > span{
+        font-size: 30px;
+    }
+    #offers{
+        display: flex !important;
+    }
+    .img-fluid{
+        max-width: 200px !important;
+    }
+    .c_bg{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        
+    }
+    #opening_time_h{
+        font-size: 54px;
+    }
+    #map{
+        margin-top: 94px;
+        margin-right: 3rem!important;
+    }
+}
+@media (min-width:5000px){
+    #logo{
+        margin: 16px;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: lighter;
+        font-size: 158px;
+        font-style: italic;
+        letter-spacing: 0.1rem;
+    }
+    #m_h{
+        font-size: 158px;
+        font-weight: 600;
+        font-family: 'Open Sans', sans-serif;
+        margin-top: 35px;
+    }
+    #m_txt{
+        font-size: 64px;
+        font-weight: 300;
+        font-family: 'Open Sans', sans-serif;
+    
+    }
+    #opening_time_h{
+        font-size: 158px;
+    }
+    .navbar-nav{
+        font-size: 60px;
+    }
+    table > *{
+        font-size: 520%;
+    }
+}
