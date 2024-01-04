@@ -1,5 +1,10 @@
 @extends('layouts.home')
-@section('css')
+@section("home-css")
+    <link href="{{ asset('build/assets/css/home.css') }}" rel="stylesheet">
+@endsection
+@section("nav")
+    <a class="nav-link active" aria-current="page" href="{{route("homePage")}}">Home</a>
+    <a class="nav-link" href="{{route("menu")}}">Menu</a>
     <link href="{{ asset('build/assets/css/home.css') }}" rel="stylesheet">
 @endsection
 @section('content')
@@ -43,7 +48,7 @@
                 <img src="{{ asset('build/assets/img/computer/nav_3.png') }}" class="img-fluid" alt="Pasta">
             </div>
         </div>
-        <a class="btn btn-rounded text-white nav-btn" style="background-color: #06C167" href="menu.html" role="button">
+        <a class="btn btn-rounded text-white nav-btn" style="background-color: #06C167" href="{{route("menu")}}" role="button">
             <span style="color: black;">Menu</span>
         </a>
     </section>
@@ -88,7 +93,7 @@
                 </table>
                 <div class="text-center">
                     <a id="btn-menu" class=" btn btn-rounded text-white nav-btn m-3" style="background-color: #000000"
-                       href="/menu.html" role="button">
+                       href="{{route("menu")}}" role="button">
                         <span style="color: #06C167;">Order</span>
                     </a>
                 </div>

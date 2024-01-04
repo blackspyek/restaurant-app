@@ -9,6 +9,12 @@ class Dish extends Model
 {
     use HasFactory;
     protected $table = 'dish';
+    protected $fillable = [
+        'dish_name',
+        'dish_price',
+        'dish_description',
+        'dish_type_id',
+    ];
     public function dishType()
     {
         return $this->belongsTo(DishType::class, 'dish_type_id', 'id');

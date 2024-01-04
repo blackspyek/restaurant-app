@@ -1,11 +1,15 @@
 @extends('layouts.home')
 
-@section('css')
-    <link href="{{ asset('build/assets/css/menu.css') }}" rel="stylesheet">
+@section('home-css')
+    <link rel="stylesheet" href='{{ asset("build/assets/css/menu.css") }}' >
+
+
 @endsection
-
+@section("nav")
+    <a class="nav-link" aria-current="page" href="{{route("homePage")}}">Home</a>
+    <a class="nav-link active" href="{{route("menu")}}">Menu</a>
+@endsection
 @section('content')
-
     <div class="container">
         <div class="row ">
             @unless(count($pizzas) == 0)
