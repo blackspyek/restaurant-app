@@ -1,7 +1,7 @@
 <div>
-    <div class="container">
-        <button wire:click="toggle" type="button" class="btn btn-primary">
-            <div class="d-flex align-items-center">
+    <div class="container basket-btn-container">
+        <button wire:click="toggle" type="button" class="btn btn-primary basket-btn">
+            <div class="d-flex align-items-center basket-button-content">
                 @if($qty > 0)
                     <span class="me-1">{{ $qty }}</span>
                 @endif

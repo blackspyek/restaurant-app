@@ -3,33 +3,23 @@
 namespace App\Livewire;
 
 use App\Models\Dish;
+use App\Models\PizzaIngredients;
 use Illuminate\Support\Collection;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-
-class Basket extends Component
+class OrderListing extends Component
 {
-    /**
-     * Indicates if the basket is open or closed
-     *
-     * @var bool
-     */
-    public $toggle = false;
-
     public $basket = [];
 
     public $dishes = [];
 
-    /**
-     * Indicates the total price of the basket
-     *
-     * @var float
-     */
+    public $ingredients = [];
     public $total = 0.00;
 
-    #[On('basketUpdated')]
-    public function hydrate(): void
+
+
+    public function boot(): void
     {
         $this->basket = basket()->all(); // Sets the basket with the associated array of all dishes in the basket and their quantities ['dish_id' => 'qty'']
 
@@ -46,13 +36,12 @@ class Basket extends Component
             }
         )->toArray();
 
+        $this->ingredients = $this->ingredients();
     }
-
-    /**
-     * Returns the Collection of dish objects with the following properties: ['id', 'name', 'price', 'qty', 'total']
-     *
-     * @return Collection
-     */
+    public function render()
+    {
+        return view('livewire.order-listing');
+    }
     private function dishes(): Collection
     {
         if (empty($this->basket)) {
@@ -68,6 +57,7 @@ class Basket extends Component
             ->map(function (Dish $dish) {
                 return (object)[
                     'id' => $dish->id,
+                    'pizza_id' => $dish->pizza_id,
                     'name' => $dish->dish_name,
                     'price' => $dish->dish_price,
                     'qty' => $qty = $this->basket[$dish->id],
@@ -77,60 +67,21 @@ class Basket extends Component
 
 
     }
-
-    public function render()
+    private function ingredients()
     {
-        return view('livewire.basket');
+        if (($test = $this->dishes()->pluck('pizza_id')->unique()->toArray()) == null)
+            return array();
+        return PizzaIngredients::join('pizza', 'pizza_ingredients_.pizza_id', '=', 'pizza.id')
+            ->join('pizza_ingredient', 'pizza_ingredients_.pizza_ingredient_id', '=', 'pizza_ingredient.id')
+            ->select('pizza.id as pizza_id', 'pizza_ingredient.pizza_ingredient_name')
+            ->whereIn('pizza_id',$test)
+            ->get()
+            ->groupBy('pizza_id')
+            ->map(function ($group) {
+                return $group->pluck('pizza_ingredient_name');
+            })
+            ->toArray();
+
     }
 
-    /**
-     * Toggles or untoggles the basket on click
-     *
-     * @return void
-     */
-
-    #[On('toggleBasket')]
-    public function toggle(): void
-    {
-        $this->toggle = !$this->toggle;
-    }
-
-    /**
-     * Updates the basket
-     *
-     * @return void
-     */
-    private function update() : void
-    {
-        $this->dispatch('basketUpdated');
-    }
-    /**
-     * Increases the quantity of a dish in the basket
-     *
-     * @param $id
-     * @return void
-     */
-    public function increase(int $id)
-    {
-        basket()->add($id, $this->basket[$id] + 1);
-        $this->update();
-    }
-
-    /**
-     * Decreases the quantity of a dish in the basket
-     *
-     * @param $id
-     * @return void
-     */
-    public function decrease(int $id)
-    {
-        if (($qty = $this->basket[$id] - 1 ) < 1) {
-            basket()->remove($id);
-            $this->update();
-        }
-        else {
-            basket()->add($id, $qty);
-            $this->update();
-        }
-    }
 }

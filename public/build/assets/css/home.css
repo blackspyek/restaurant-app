@@ -15,7 +15,7 @@
     left: -0.06em;
     border-top: 0.2em solid #008C45;
     border-right: .2em solid transparent;
-    
+
 
   }
 #logo::after{
@@ -52,6 +52,10 @@
 p{
     letter-spacing: 0;
 }
+.active
+{
+    font-weight: 700 !important;
+}
 #nav_baner{
     font-size: 28px;
     font-weight: 400;
@@ -68,6 +72,7 @@ iframe{
     width: 100%;
     height: 300px;
 }
+
 #bg-gads
 {
     background: rgb(255,255,255);
@@ -151,7 +156,7 @@ footer{
         font-size: 16px;
         font-weight: 300;
         font-family: 'Open Sans', sans-serif;
-    
+
     }
     #carousel{
         text-align: center;
@@ -174,7 +179,7 @@ footer{
     .c_bg{
         display: grid;
         grid-template-columns: 50% 50%;
-        
+
     }
     #opening_time_h{
         font-size: 54px;
@@ -183,6 +188,76 @@ footer{
         margin-top: 94px;
         margin-right: 3rem!important;
     }
+}
+@media (min-width: 991px) {
+    .nav-content {
+        display: flex !important;
+    }
+
+    .nav-style {
+        align-items: center;
+        gap: 8px;
+        margin-right: 4rem;
+    }
+}
+@media (max-width: 991px) {
+    .nav-style {
+        flex-direction: column;
+        text-align: center;
+        margin-top: 1rem !important;
+        border-top: rgb(0, 0, 0, 0.1) solid 1px !important;
+
+
+    }
+    .basket-action
+    {
+        justify-content: center;
+        gap: 4px;
+    }
+
+    .nav-style-layout {
+        flex-direction: column;
+
+    }
+    .list-group{
+        text-align: center !important;
+    }
+
+    #bas {
+        position: static !important;
+    }
+
+    .nav-link {
+        border-bottom: rgb(0, 0, 0, 0.1) solid 1px !important;
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+    }
+
+    .basket-btn {
+        min-width: 100%;
+    }
+
+    .basket-btn-container {
+        min-width: 100%;
+        padding: 0 !important;
+    }
+    .nav-main
+    {
+        padding-right: 8px !important;
+    }
+    .bas-content {
+        min-width: 100%;
+        padding: 0 !important;
+    }
+
+    .basket-button-content {
+        justify-content: center;
+    }
+
+    .nav-content {
+        min-width: 100%;
+    }
+
 }
 @media (min-width:5000px){
     #logo{
@@ -203,7 +278,7 @@ footer{
         font-size: 64px;
         font-weight: 300;
         font-family: 'Open Sans', sans-serif;
-    
+
     }
     #opening_time_h{
         font-size: 158px;

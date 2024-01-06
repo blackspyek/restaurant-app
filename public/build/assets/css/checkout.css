@@ -27,7 +27,62 @@ footer {
     padding: .7rem;
 }
 
+.modalActivators,.deliveryMethods{
+    cursor: pointer;
+    transition: all 0.3s ease
+}
+.modalActivators:hover {
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+.btn-group-vertical
+{
+    min-width: 100%;
 
+}
+#pickupMethodLabel, #paymentMethodLabel{
+    margin-bottom: 1rem;
+}
+/* Default style for the deliveryMethods */
+.deliveryMethods, .paymentMethods {
+    background-color: white !important;
+}
+
+.modalConfirmBtn
+{
+    min-width: 100%;
+}
+.labelText
+{
+    min-width: 20%;
+}
+/* Hide the check icon by default */
+.deliveryMethods .fa-check {
+    display: none;
+}
+.paymentMethods .fa-check {
+    display: none;
+}
+.deliveryMethodsInputs:checked + .deliveryMethods .fa-check {
+    display: inline-block;
+}
+.paymentMethodsInputs:checked + .paymentMethods .fa-check {
+    display: inline-block;
+}
+#orderCard{
+    border: rgba(0,0,0,0.25) solid 1px;
+}
+.form-control{
+    border-color: rgba(0,0,0,0.5) !important;
+    border-radius: 8px !important;
+}
+.formBtns
+{
+    margin-top: 16px !important;
+
+}
+.formBtn{
+    min-width: 15% !important;
+}
 @media (max-width:547px) {
     form {
         margin-bottom: 10px;
@@ -57,7 +112,7 @@ footer {
 	justify-content: center;
 }
     .colGap{margin-top: 1rem!important;}
-    
+
 
 }
 

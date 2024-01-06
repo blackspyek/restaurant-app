@@ -5,7 +5,7 @@
 
 @endsection
 @section("nav")
-    <div class="position-relative mt-1">
+    <div class="position-relative">
         <livewire:basket-button/>
         <livewire:basket/>
     </div>
@@ -27,12 +27,11 @@
                                     />
 
                                     {{ $item['dish_name'] }}
-
                                 </h3>
 
                             </div>
-                            <div class="col-4">
-                                <span class="name ">{{ $item['dish_price'] }}</span>
+                            <div class="col-4 price">
+                                <p class="name ">{{ $item['dish_price'] }}</p>
                             </div>
                             <span class="desc">
                                 @foreach($item['ingredients'] as $ingredient)

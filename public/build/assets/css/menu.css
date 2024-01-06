@@ -28,6 +28,18 @@ footer {
     flex-shrink: 0;
 }
 
+#bas {
+    background-color: white !important;
+    min-width: 200px;
+    left: -50px;
+
+}
+
+#checkoutLink {
+    background-color: black;
+    color: white;
+}
+
 #logo {
     margin: 16px;
     font-family: 'Open Sans', sans-serif;
@@ -68,13 +80,16 @@ footer {
     flex-grow: 1;
 }
 
-.category>table>tbody>tr,
-.s-category>table>tbody>tr {
+.category > table > tbody > tr,
+.s-category > table > tbody > tr {
     display: grid;
     grid-template-columns: minmax(200px, 500px) auto;
 
 }
-
+.active
+{
+    font-weight: 700 !important;
+}
 .quant {
     font-family: 'Open Sans', sans-serif;
     font-weight: lighter;
@@ -98,7 +113,6 @@ footer {
     font-family: 'Inter', sans-serif;
     font-weight: 400 !important;
 
-    font-size: 28px;
     color: #270D0D;
 }
 
@@ -117,7 +131,9 @@ footer {
     width: 1.5rem; /* Adjust the width as needed */
     height: 1.5rem; /* Adjust the height as needed */
 }
-
+.col-sm{
+    min-width: 250px;
+}
 
 #BasketText {
     font-family: 'Inter', sans-serif;
@@ -125,7 +141,11 @@ footer {
     border-top: .2px solid black;
     padding-top: .5rem;
 }
-
+.basket-action
+{
+    margin-left: 8px;
+    margin-right: 4px;
+}
 .item {
     display: table-caption;
 }
@@ -143,16 +163,25 @@ input[type="email"] {
     min-width: 180px;
     height: 22px;
 }
-
-
-
-input:invalid{
+.plus-container
+{
+    display: inline-flex;
+}
+.price
+{
+    text-align: end;
+}
+.basket-plus
+{
+    max-width: 20%;
+}
+input:invalid {
     border: 1px dashed red;
 }
-input:valid{
+
+input:valid {
     border: 1px solid green;
 }
-
 
 
 .quantity {
@@ -160,7 +189,7 @@ input:valid{
     /* Adjust the width value as per your desired size */
 }
 
-@media (max-width:547px) {
+@media (max-width: 547px) {
     form {
         margin-bottom: 10px;
     }
@@ -176,47 +205,79 @@ input:valid{
 
 }
 
-@media (min-width:991px) {
-    #BasketText {
-        display: none;
+@media (min-width: 991px) {
+    .nav-content {
+        display: flex !important;
+    }
+
+    .nav-style {
+        align-items: center;
+        gap: 8px;
+        margin-right: 4rem;
     }
 }
 
-@media (max-width:991px) {
-    #navbarNavAltMarkup {
-        padding-right: 0rem !important;
-    }
-}
-
-@media (max-width:991px) {
-
-    .dropdown-menu {
-        display: block !important;
-        position: static !important;
-        box-shadow: none !important;
-
-    }
-
-    .dropdown-toggle {
-        display: none;
-    }
-
-    #basket {
+@media (max-width: 991px) {
+    .nav-style {
+        flex-direction: column;
         text-align: center;
-        list-style-type: none !important;
-        padding: 0;
-    }
+        margin-top: 1rem !important;
+        border-top: rgb(0, 0, 0, 0.1) solid 1px !important;
 
-    #BasketText {
-        font-family: 'Inter', sans-serif;
-        font-weight: 400 !important;
-        border-top: .2px solid black;
-        padding-top: .5rem;
 
     }
+    .basket-action
+    {
+        justify-content: center;
+        gap: 4px;
+    }
+
+    .nav-style-layout {
+        flex-direction: column;
+
+    }
+    .list-group{
+        text-align: center !important;
+    }
+
+    #bas {
+        position: static !important;
+    }
+
+    .nav-link {
+        border-bottom: rgb(0, 0, 0, 0.1) solid 1px !important;
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+    }
+
+    .basket-btn {
+        min-width: 100%;
+    }
+
+    .basket-btn-container {
+        min-width: 100%;
+        padding: 0 !important;
+    }
+    .nav-main
+    {
+        padding-right: 8px !important;
+    }
+    .bas-content {
+        min-width: 100%;
+        padding: 0 !important;
+    }
+
+    .basket-button-content {
+        justify-content: center;
+    }
+
+    .nav-content {
+        min-width: 100%;
+    }
+
 }
 
-@media (min-width:817px) {
+@media (min-width: 817px) {
     #logo {
         margin: 16px;
         font-family: 'Open Sans', sans-serif;
@@ -250,7 +311,7 @@ input:valid{
 
 }
 
-@media (min-width:5000px) {
+@media (min-width: 5000px) {
     #logo {
         margin: 16px;
         font-family: 'Open Sans', sans-serif;

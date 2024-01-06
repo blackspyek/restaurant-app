@@ -16,8 +16,9 @@ class AddToBasketButton extends Component
     public $dishId;
 
 
+
     /**
-     * Mount Component
+     * Mount Component, sets the public property $dishId with the dish id passed from the view
      * @param int $dishId
      * @return void
      */

@@ -1,10 +1,10 @@
 @extends('layouts.home')
 @section("home-css")
     <link href="{{ asset('build/assets/css/home.css') }}" rel="stylesheet">
+
 @endsection
 @section("nav")
     <x-nav-items/>
-    <link href="{{ asset('build/assets/css/home.css') }}" rel="stylesheet">
 @endsection
 @section('content')
     <section id="info" class="ps-4 ">
