@@ -22,11 +22,12 @@ class MenuController extends Controller
         $allPastas = $allDishes->where('dish_type_id', 1);
         $allAppetizers = $allDishes->where('dish_type_id', 2);
         $allDesserts = $allDishes->where('dish_type_id', 3);
-        return view('menuPage',[
-            'pizzas' => Pizza::getPizzasWithIngredientsArray(),
+        return view('menuPage', [
+            'pizzas' => PizzaIngredients::getPizzaWithIngridients(),
             'pastas' => $allPastas,
             'appetizers' => $allAppetizers,
             'desserts' => $allDesserts,
+            'session' => session()->all(),
         ]);
     }
 
@@ -34,14 +35,17 @@ class MenuController extends Controller
     {
         return view('menuManagementPage');
     }
+
     public function changeMenuPizza()
     {
         return view('menuAdminPage');
     }
+
     public function changeMenuDish()
     {
         return view('dishAdminPage');
     }
+
     public function changeMenuDishType()
     {
         return view('dishTypeAdminMenu');
@@ -49,7 +53,6 @@ class MenuController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-
 
 
     /**
@@ -60,47 +63,64 @@ class MenuController extends Controller
         return view('menuEditPage', [
             'OnPizzaIngredients' => PizzaIngredients::getArrayOfIngredients($id),
             'pizza' => Pizza::find($id),
-            'piizzas_ingredients' => PizzaIngredient::all("id","pizza_ingredient_name"),
+            'piizzas_ingredients' => PizzaIngredient::all("id", "pizza_ingredient_name"),
         ]);
     }
+
     public function editDish(string $id)
     {
         return view('dishEditPage', [
             'dish' => Dish::find($id),
-            'dish_types' => DishType::all("id","dish_type_name"),
+            'dish_types' => DishType::all("id", "dish_type_name"),
         ]);
     }
+
     public function editDishType(string $id)
     {
         return view('dishTypeEditPage', [
             'dishType' => DishType::find($id),
-            'dish_types' => DishType::all("id","dish_type_name"),
+            'dish_types' => DishType::all("id", "dish_type_name"),
         ]);
     }
+
     /**
      * Update the specified resource in storage.
      */
     public function updatePizza(Request $request, string $id)
     {
         $tempPizza = Pizza::find($id);
-        $tempPizza->pizza_name = $request->pizza_name;
-        $tempPizza->pizza_price = $request->pizza_price;
-        $tempPizza->pizza_description = $request->pizza_description;
-        $tempPizza->save();
-        $pizza_ingredients = PizzaIngredients::where('pizza_id', $id)->get();
-        foreach ($pizza_ingredients as $pizza_ingredient) {
-            $pizza_ingredient->delete();
-        }
-
-        foreach ($request->pizza_ingredients as $pizza_ingredient) {
-            PizzaIngredients::create([
-                'pizza_id' => $id,
-                'pizza_ingredient_id' => $pizza_ingredient,
+        if ($tempPizza) {
+            $validated = $request->validate([
+                'pizza_name' => 'required|min:6',
+                'pizza_price' => 'required|numeric|min:0',
+                'pizza_description' => 'required|min:6',
             ]);
-        }
+            $tempPizza->pizza_name = $request->pizza_name;
+            $tempPizza->pizza_price = $request->pizza_price;
+            $tempPizza->pizza_description = $request->pizza_description;
+            $tempPizza->save();
+            $pizza_ingredients = PizzaIngredients::where('pizza_id', $id)->get();
 
+            $tempDish = Dish::where('pizza_id', $id)->first();
+            $tempDish->dish_type_id = 4;
+            $tempDish->dish_name = $request->pizza_name;
+            $tempDish->dish_price = $request->pizza_price;
+            $tempDish->dish_description = $request->pizza_description;
+            $tempDish->save();
+            foreach ($pizza_ingredients as $pizza_ingredient) {
+                $pizza_ingredient->delete();
+            }
+
+            foreach ($request->pizza_ingredients as $pizza_ingredient) {
+                PizzaIngredients::create([
+                    'pizza_id' => $id,
+                    'pizza_ingredient_id' => $pizza_ingredient,
+                ]);
+            }
+        }
         return redirect()->route('changeMenuPizza');
     }
+
     public function updateDish(Request $request, string $id)
     {
         $validated = $request->validate([
@@ -118,9 +138,9 @@ class MenuController extends Controller
         $tempDish->save();
 
 
-
         return redirect()->route('changeMenuDish');
     }
+
     public function updateDishType(Request $request, string $id)
     {
         $validated = $request->validate([

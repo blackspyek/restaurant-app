@@ -80,4 +80,5 @@ class DishList extends Component
         $this->dispatch('swal:confirm',id: $id, type: 'warning',message: 'Are you sure?',text: 'If deleted, you will not be able to recover this Dish entry!');
 
     }
+
 }

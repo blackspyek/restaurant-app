@@ -188,7 +188,44 @@ class DatabaseSeeder extends Seeder
         DishType::create([
             'dish_type_name' => 'Desserts',
         ]);
-
+        DishType::create([
+            'dish_type_name' => 'Pizza',
+        ]);
+        Dish::create([
+            'pizza_id' => 1,
+            'dish_type_id' => 4,
+            'dish_name' => 'Pepperoni',
+            'dish_description' => 'Pepperoni, tomato sauce, mozzarella',
+            'dish_price' => 10.99,
+        ]);
+        Dish::create([
+            'pizza_id' => 2,
+            'dish_type_id' => 4,
+            'dish_name' => 'Margherita',
+            'dish_description' => 'Tomato sauce, mozzarella, basil',
+            'dish_price' => 9.99,
+        ]);
+        Dish::create([
+            'pizza_id' => 3,
+            'dish_type_id' => 4,
+            'dish_name' => 'Hawaiian',
+            'dish_description' => 'Tomato sauce, mozzarella cheese, ham, and pineapple chunks',
+            'dish_price' => 14,
+        ]);
+        Dish::create([
+            'pizza_id' => 4,
+            'dish_type_id' => 4,
+            'dish_name' => 'BBQ Chicken',
+            'dish_description' => 'BBQ sauce, mozzarella cheese, grilled chicken, and red onions.',
+            'dish_price' => 16,
+        ]);
+        Dish::create([
+            'pizza_id' => 5,
+            'dish_type_id' => 4,
+            'dish_name' => 'Veggie',
+            'dish_description' => 'Tomato sauce, mozzarella cheese, mushrooms, onions, bell peppers, and olives.',
+            'dish_price' => 15,
+        ]);
         // Dish Dummy Data
         Dish::create([
             'dish_type_id' => 1,

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Dish;
 use App\Models\Pizza;
 use App\Models\PizzaIngredient;
 use App\Models\PizzaIngredients;
@@ -53,12 +54,14 @@ class PizzaList extends Component
     public function delete($id)
     {
         $pizza = Pizza::find($id);
+        $dish = Dish::first()->where('pizza_id', $id);
         $pizza_ing = PizzaIngredients::where('pizza_id', $id)->get();
         if ($pizza) {
 
             foreach ($pizza_ing as $item) {
                 $item->delete();
             }
+            $dish->delete();
             $pizza->delete();
             $this->pizzas = $this->model->all();
         }
@@ -94,6 +97,13 @@ class PizzaList extends Component
                 'pizza_ingredient_id' => $ingredient,
             ]);
         }
+        $dish =  Dish::create([
+            'pizza_id' => $pizza->id,
+            'dish_type_id' => 4,
+            'dish_name' => $this->name,
+            'dish_description' => $this->description,
+            'dish_price' => $this->price,
+        ]);
         $this->pizzas = $this->model->all();
     }
 

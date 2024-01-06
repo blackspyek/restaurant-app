@@ -1,13 +1,16 @@
 @extends('layouts.home')
 
 @section('home-css')
-    <link rel="stylesheet" href='{{ asset("build/assets/css/menu.css") }}' >
-
+    <link rel="stylesheet" href='{{ asset("build/assets/css/menu.css") }}'>
 
 @endsection
 @section("nav")
-    <a class="nav-link" aria-current="page" href="{{route("homePage")}}">Home</a>
-    <a class="nav-link active" href="{{route("menu")}}">Menu</a>
+    <div class="position-relative mt-1">
+        <livewire:basket-button/>
+        <livewire:basket/>
+    </div>
+    <x-nav-items/>
+
 @endsection
 @section('content')
     <div class="container">
@@ -19,30 +22,27 @@
                         <div class="row  pb-3">
                             <div class="col-8 pt-1">
                                 <h3>
-                                    <img class="plus"
-                                         data-type="Pizza"
-                                         data-name="{{ $item['pizza_name'] }}"
-                                         data-price="{{ $item['pizza_price'] }}"
-                                         src="{{ asset('build/assets/img/global/plus.svg') }}"
-                                         alt="plus">
-                                    {{ $item['pizza_name'] }}
+                                    <livewire:add-to-basket-button
+                                        :dishId="$item['id']"
+                                    />
+
+                                    {{ $item['dish_name'] }}
 
                                 </h3>
 
                             </div>
                             <div class="col-4">
-                                <span class="name ">{{ $item['pizza_price'] }}</span>
+                                <span class="name ">{{ $item['dish_price'] }}</span>
                             </div>
                             <span class="desc">
-                                @foreach($item["ingredients"] as $ingredient)
-
+                                @foreach($item['ingredients'] as $ingredient)
                                     @if($loop->last)
-                                        {{ $ingredient["pizza_ingredient_name"] }}
+                                        {{ $ingredient }}
                                     @else
-                                        {{ $ingredient["pizza_ingredient_name"] }},
+                                        {{ $ingredient }},
                                     @endif
-                                @endforeach
 
+                                @endforeach
                             </span>
                         </div>
                     @endforeach
@@ -57,12 +57,9 @@
                         <div class="row">
                             <div class="col-10 pt-1">
                                 <h3>
-                                    <img class="plus"
-                                         data-type="Pasta"
-                                         data-name="{{ $item['dish_name'] }}"
-                                         data-price="{{ $item['dish_price'] }}"
-                                         src="{{ asset('build/assets/img/global/plus.svg') }}"
-                                         alt="plus">
+                                    <livewire:add-to-basket-button
+                                        :dishId="$item['id']"
+                                    />
                                     {{ $item['dish_name'] }}
                                 </h3>
                             </div>
@@ -90,12 +87,9 @@
                             <div class="row">
                                 <div class="col-10 pt-1">
                                     <h3>
-                                        <img class="plus"
-                                             data-type="Appetizer"
-                                             data-name="{{ $item['dish_name'] }}"
-                                             data-price="{{ $item['dish_price'] }}"
-                                             src="{{ asset('build/assets/img/global/plus.svg') }}"
-                                             alt="plus">
+                                        <livewire:add-to-basket-button
+                                            :dishId="$item['id']"
+                                        />
                                         {{ $item['dish_name'] }}
                                     </h3>
                                 </div>
@@ -121,12 +115,9 @@
                             <div class="row">
                                 <div class="col-10 pt-1">
                                     <h3>
-                                        <img class="plus"
-                                             data-type="Dessert"
-                                             data-name="{{ $item['dish_name'] }}"
-                                             data-price="{{ $item['dish_price'] }}"
-                                             src="{{ asset('build/assets/img/global/plus.svg') }}"
-                                             alt="plus">
+                                        <livewire:add-to-basket-button
+                                            :dishId="$item['id']"
+                                        />
                                         {{ $item['dish_name'] }}
                                     </h3>
                                 </div>

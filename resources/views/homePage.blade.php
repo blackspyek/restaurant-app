@@ -3,8 +3,7 @@
     <link href="{{ asset('build/assets/css/home.css') }}" rel="stylesheet">
 @endsection
 @section("nav")
-    <a class="nav-link active" aria-current="page" href="{{route("homePage")}}">Home</a>
-    <a class="nav-link" href="{{route("menu")}}">Menu</a>
+    <x-nav-items/>
     <link href="{{ asset('build/assets/css/home.css') }}" rel="stylesheet">
 @endsection
 @section('content')
