@@ -109,7 +109,7 @@ class PizzaList extends Component
 
     public function alertSuccess()
     {
-        $this->dispatch('swal:modal', type: 'success',message: 'User Created Successfully!',text: 'It will list on users table soon.');
+        $this->dispatch('swal:modal', type: 'success',message: 'Pizza Created Successfully!',text: 'It will list on pizza table soon.');
 
     }
     /**

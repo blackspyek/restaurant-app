@@ -15,4 +15,8 @@ class OrderController extends Controller
     {
         return view('order.checkout');
     }
+    public function showThankyou()
+    {
+        return view('order.thankyou');
+    }
 }

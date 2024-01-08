@@ -3,12 +3,22 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Address;
+use App\Models\Customer;
+use App\Models\DeliveryType;
 use App\Models\Dish;
 use App\Models\DishType;
+use App\Models\OrderDetail;
+use App\Models\OrderHeader;
+use App\Models\OrderStatus;
+use App\Models\PaymentStatus;
+use App\Models\PaymentType;
 use App\Models\Pizza;
 use App\Models\PizzaIngredient;
 use App\Models\PizzaIngredients;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +27,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'password' => Hash::make("admin"),
+            'role' => 'admin',
+        ]);
 
         // Pizza Dummy Data
         Pizza::create([
@@ -285,6 +302,103 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
+        DeliveryType::create([
+            'Delivery_method_name' => 'Delivery',
+            'Delivery_method_price' => 5.99,
+        ]);
 
+        DeliveryType::create([
+            'Delivery_method_name' => 'PickUp',
+            'Delivery_method_price' => 0,
+        ]);
+
+        OrderStatus::create([
+            'order_status_name' => 'Received',
+        ]);
+        OrderStatus::create([
+            'order_status_name' => 'Confirmed',
+        ]);
+        OrderStatus::create([
+            'order_status_name' => 'Preparing',
+        ]);
+        OrderStatus::create([
+            'order_status_name' => 'Delivering',
+        ]);
+        OrderStatus::create([
+            'order_status_name' => 'Ready for Pickup',
+        ]);
+        OrderStatus::create([
+            'order_status_name' => 'Completed',
+        ]);
+        OrderStatus::create([
+            'order_status_name' => 'Cancelled',
+        ]);
+
+        PaymentStatus::create([
+            'payment_status_name' => 'Pending',
+        ]);
+        PaymentStatus::create([
+            'payment_status_name' => 'Paid',
+        ]);
+        PaymentStatus::create([
+            'payment_status_name' => 'Refunded',
+        ]);
+
+        PaymentType::create([
+            'payment_method_name' => 'Cash',
+        ]);
+        PaymentType::create([
+            'payment_method_name' => 'Przelewy24',
+        ]);
+
+        Customer::create(
+            [
+                'First_name' => 'John',
+                'Last_name' => 'Doe',
+                'Phone_number' => '547778749',
+                'Email' => 'johndoe@gmail.com',
+            ]
+        );
+
+        Address::create(
+            [
+                'city_name' => 'Lublin',
+                'street_name' => 'Lubartowska',
+                'building_number' => '4',
+                'apartment_number' => '2',
+                'zip_code' => '20-001',
+                'Customer_id' => 1,
+            ]
+        );
+
+        OrderHeader::create(
+            [
+                'customer_id' => 1,
+                'delivery_type_id' => 1,
+                'payment_type_id' => 1,
+                'payment_status_id' => 1,
+                'employee_id' => 1,
+                'total_price' => 20.98,
+                'order_status_id' => 1,
+            ]
+        );
+
+        OrderDetail::create(
+            [
+                'order_header_id' => 1,
+                'dish_id' => 1,
+                'quantity' => 1,
+                'price' => 10.99,
+            ]
+        );
+
+        OrderDetail::create(
+            [
+                'order_header_id' => 1,
+                'dish_id' => 2,
+                'quantity' => 1,
+                'price' => 9.99,
+            ]
+        );
     }
 }

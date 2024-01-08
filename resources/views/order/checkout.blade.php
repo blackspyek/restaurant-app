@@ -10,29 +10,33 @@
 @section('content')
 
 
-    <livewire:delivery-modal/>
-    <livewire:payment-modal/>
-    <form>
-        <div class="container">
-            <div id="mainRow" class="row gap-2">
-                <div class="col-8">
-                    <livewire:order-modal/>
-
-                    <livewire:order-client-data/>
-
-
-                </div>
-
-                <livewire:order-listing/>
-
-            </div>
-
-        </div>
-    </form>
+    <livewire:order-checkout/>
     <script>
         import { Modal, Ripple, initMDB } from "mdb-ui-kit";
 
         initMDB({ Modal, Ripple });
+
+    </script>
+@endsection
+@section("jss")
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script>
+        window.addEventListener('swal:confirm', event => {
+            swal({
+                title: event.detail.message,
+                text: event.detail.text,
+                icon: event.detail.type,
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((submitOrder) => {
+                    if (submitOrder) {
+                        Livewire.dispatch("submitOrder");
+                    }
+                });
+        });
+
+
 
     </script>
 @endsection

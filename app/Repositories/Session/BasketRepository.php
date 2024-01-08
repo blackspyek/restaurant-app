@@ -2,13 +2,16 @@
 
 namespace App\Repositories\Session;
 
+use App\Models\Dish;
 use App\Repositories\Contracts\BasketRepositoryContract;
 use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Collection;
 
 class BasketRepository implements BasketRepositoryContract
 {
     private Session $session;
 
+    private array $basket;
     /**
      * BasketRepository constructor.
      *
@@ -17,6 +20,7 @@ class BasketRepository implements BasketRepositoryContract
     public function __construct(Session $session)
     {
         $this->session = $session;
+        $this->basket = $this->all();
     }
 
     /**
@@ -60,5 +64,39 @@ class BasketRepository implements BasketRepositoryContract
     public function remove(int $id): void
     {
         $this->session->remove($this->identity($id));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getDishes():  Collection
+    {
+
+        if (empty($this->basket)) {
+            return collect();
+        }
+
+        return Dish::whereIn('id', array_keys($this->basket))
+            ->get()
+            ->map(function (Dish $dish) {
+                return (object)[
+                    'id' => $dish->id,
+                    'pizza_id' => $dish->pizza_id,
+                    'name' => $dish->dish_name,
+                    'price' => $dish->dish_price,
+                    'qty' => $qty = $this->basket[$dish->id],
+                    'total' => $dish->dish_price * $qty
+                ];
+            });
+
+
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function clearBasket(): void
+    {
+        $this->session->put('basket', []);
     }
 }

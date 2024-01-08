@@ -6,7 +6,7 @@
             <div class="card-text">
                 <ul class="list-group list-group-light">
                     @forelse($dishes as $dish)
-                    <li class="list-group-item">
+                    <li wire:key="{{$dish->id}}" class="list-group-item">
                         <div class=" d-flex gap-3">
                             <p class="qty">{{$dish->qty}}x</p>
                             <p class="name">{{ $dish->name }}</p>

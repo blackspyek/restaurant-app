@@ -24,6 +24,10 @@ class Dish extends Model
     {
         return $this->hasOne(Pizza::class, 'id', 'pizza_id');
     }
+    public function orderDetail()
+    {
+        return $this->hasMany(OrderDetail::class, 'dish_Id', 'id');
+    }
     public static function getDishInfo()
     {
         $dishInfo = self::with('dishType')->get();

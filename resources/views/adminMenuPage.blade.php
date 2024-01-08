@@ -25,7 +25,7 @@
         <div class="card-body">
             <h5 class="card-title">Orders</h5>
             <p class="card-text">This panel allows you to manage and modify the orders for your restaurant</p>
-            <a href="#" class="btn btn-primary">Take me</a>
+            <a href="{{ route("showList") }}" class="btn btn-primary">Take me</a>
         </div>
     </div>
     @can('isAdmin')

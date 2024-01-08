@@ -2,6 +2,8 @@
 
 namespace App\Repositories\Contracts;
 
+use Illuminate\Support\Collection;
+
 interface BasketRepositoryContract
 {
     /**
@@ -35,4 +37,18 @@ interface BasketRepositoryContract
      * @return void
      */
     public function remove(int $id): void;
+
+    /**
+     * Fetches dishes from the database that are in the basket, and for each dish, creates an object with the following properties:
+     *
+     * @return Collection
+     */
+    public function getDishes(): Collection;
+
+    /**
+     * Clears the basket
+     *
+     * @return void
+     */
+    public function clearBasket(): void;
 }
