@@ -35,6 +35,7 @@ Route::get('/menu',[MenuController::class, 'index'])->name('menu');
 Route::get('/order/checkout',[OrderController::class, 'showCheckout'])->name('showCheckout');
 Route::get('/order/checkout/thankyou',[OrderController::class, 'showThankyou'])->name('showThankyou');
 
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

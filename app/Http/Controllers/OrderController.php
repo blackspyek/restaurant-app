@@ -15,8 +15,8 @@ class OrderController extends Controller
     {
         return view('order.checkout');
     }
-    public function showThankyou()
+    public function showThankyou(Request $request)
     {
-        return view('order.thankyou');
+        return view('order.thankyou')->with('params', $request->query());
     }
 }

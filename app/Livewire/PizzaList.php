@@ -2,10 +2,12 @@
 
 namespace App\Livewire;
 
+use App\Mail\OrderConfirmationEmail;
 use App\Models\Dish;
 use App\Models\Pizza;
 use App\Models\PizzaIngredient;
 use App\Models\PizzaIngredients;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -127,5 +129,7 @@ class PizzaList extends Component
         $this->dispatch('swal:confirm',id: $id, type: 'warning',message: 'Are you sure?',text: 'If deleted, you will not be able to recover this pizza entry!');
 
     }
+
+
 
 }

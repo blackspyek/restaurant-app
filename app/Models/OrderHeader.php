@@ -23,6 +23,7 @@ class OrderHeader extends Model
         'company_name',
         'note',
         'order_status_Id',
+        'received_email'
     ];
 
     public function customer()
