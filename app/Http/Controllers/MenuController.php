@@ -8,7 +8,11 @@ use App\Models\DishType;
 use App\Models\Pizza;
 use App\Models\PizzaIngredient;
 use App\Models\PizzaIngredients;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use function Laravel\Prompts\error;
 
 class MenuController extends Controller
@@ -50,9 +54,6 @@ class MenuController extends Controller
     {
         return view('dishTypeAdminMenu');
     }
-    /**
-     * Show the form for creating a new resource.
-     */
 
 
     /**

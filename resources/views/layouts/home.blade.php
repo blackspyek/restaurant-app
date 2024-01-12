@@ -59,7 +59,7 @@
 
 </header>
 
-<main>
+<main >
     @yield('content')
 </main>
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\EditMenu;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StatisticsController;
 use App\Http\Livewire\NotificationSweetAlert;
 use Illuminate\Support\Facades\Route;
 
@@ -50,12 +51,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin/changemenu/dish',[MenuController::class, 'changeMenuDish'])->name('changeMenuDish');
         Route::get('/admin/changemenu/',[MenuController::class, 'changeMenu'])->name('changeMenu');
 
+        Route::get('/admin/statistics/',[StatisticsController::class, 'index'])->name('showStatistics');
+
         Route::get('/admin/changemenu/edit/pizza/{pizza}',[MenuController::class, 'editPizza'])->name('editPizza');
         Route::post('/admin/changemenu/edit/pizza/{pizza}',[MenuController::class, 'updatePizza'])->name('updatePizza');
 
         Route::get('/admin/changemenu/edit/dish/{dish}',[MenuController::class, 'editDish'])->name('editDish');
         Route::post('/admin/changemenu/edit/dish/{dish}',[MenuController::class, 'updateDish'])->name('updateDish');
-
 
 
     });

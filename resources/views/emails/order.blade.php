@@ -71,7 +71,7 @@
         @endif
         <p>Order ID: #{{ $order["order_header_id"] }}</p>
         <p>Order FirstName: {{ $order["First_name"] }}</p>
-        @if($order["delivery_type_name"] != "Pickup" )
+        @if($order["delivery_type_name"] != "PickUp" )
             <p>Order
                 Address: {{ $order["city_name"] }} {{ $order["street_name"] }} {{ $order["building_number"] }} {{ $order["apartment_number"] }}</p>
         @endif

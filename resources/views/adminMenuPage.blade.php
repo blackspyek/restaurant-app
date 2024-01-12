@@ -33,7 +33,7 @@
         <div class="card-body">
             <h5 class="card-title">Raport</h5>
             <p class="card-text">This panel allows you to generate statistical raport and statisctial graphs</p>
-            <a href="#" class="btn btn-primary">Take me</a>
+            <a href="{{ route("showStatistics") }}" class="btn btn-primary">Take me</a>
         </div>
     </div>
     @endcan
