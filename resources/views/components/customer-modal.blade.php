@@ -1,23 +1,29 @@
 <div>
-    <div class="modal fade" id="customerModal{{$orderId}}" tabindex="-1" aria-labelledby="customerModalLabel{{$orderId}}" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="customerModalLabel{{$orderId}}">Customer Data</h5>
-                    <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal"
-                            aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>First name: {{$name}}  </p>
-                    <p>Last name:  {{$lastname}}</p>
-                    <p>Phone number:  {{$phone}}</p>
-                    <p>Email:  {{$email}}</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-mdb-ripple-init data-mdb-dismiss="modal">
-                        Close
-                    </button>
-                    <button type="button" class="btn btn-primary" data-mdb-ripple-init>Save changes</button>
+    <div>
+        <div wire:ignore.self class="modal fade" id="customerModal" tabindex="-1" aria-labelledby="customerModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="customerModalLabel">Customer Data</h5>
+                        <button type="button" class="btn-close" data-mdb-ripple-init data-mdb-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>CityName: <span class="modalData">{{$CityName}}</span>  </p>
+                        <p>StreetName: <span class="modalData">{{$StreetName}}</span></p>
+                        <p>BuildingNumber: <span class="modalData">{{$BuildingNumber}}</span></p>
+                        <p>ApartmentNumber: <span class="modalData">{{$ApartmentNumber}}</span></p>
+                        <p>ZipCode: <span class="modalData">{{$ZipCode}}</span></p>
+                        @if($FloorNumber)
+                            <p>FloorNumber: <span class="modalData">{{$FloorNumber}}</span></p>
+                        @endif
+                        <p>
+                            <a href="https://www.google.com/maps/dir/?api=1&origin=Lublin+Nadbystrzycka+21B&destination={{$CityName}}+{{$StreetName}}+{{$BuildingNumber}}">Google maps link</a>
+
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </div>

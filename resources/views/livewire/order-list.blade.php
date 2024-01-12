@@ -57,12 +57,15 @@
                 </div>
                 <div class="col">
                     <div>
+                        <div class="d-flex gap-1" >
                         @if($order["order_status_name"] == "Received")
-                            <livewire:accept-order :orderId="$order['order_header_id']" wire:key="$loop->index"/>
+                            <livewire:accept-order :orderId="$order['order_header_id']" wire:key="accept{{$loop->index}}"/>
+                            <livewire:cancel-order :orderId="$order['order_header_id']" wire:key="cancel{{$loop->index}}"/>
+
                         @endif
+                        </div>
                         <i class="fa-solid fa-gear"></i>
                         <i class="fa-solid fa-map"></i>
-                        <i class="fa-solid fa-ban"></i>
                     </div>
                 </div>
 

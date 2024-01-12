@@ -3,17 +3,23 @@
 @section('home-css')
     <link rel="stylesheet" href='{{ asset("build/assets/css/checkout.css") }}' xmlns="http://www.w3.org/1999/html">
     <style>
-        #chartContainer
-        {
+        #chartContainer {
             display: flex;
             max-width: 350px;
+            gap: 3rem;
+        }
+        .modalData
+        {
+            font-weight: bold;
         }
     </style>
-@endsection
-@section("nav")
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 
 @endsection
+@section("nav")
+@endsection
 @section('content')
+    <x-admin-link/>
     <div class="container">
         <div class="row gap-3">
             <div class="row">
@@ -58,19 +64,16 @@
                         <p>{{$order->CompanyName}} </p>
                     </div>
                     <div class="col">
-                        <i class="fa-solid fa-user p-2" type="button" data-mdb-ripple-init data-mdb-modal-init
-                           data-mdb-target="#customerModal{{$order->OrderId}}"></i>
-                        <i class="fa-solid fa-map"></i>
+                        <livewire:statistic-buttons
+                        :order="$order"
+                        />
                     </div>
                 </div>
-                <x-customer-modal
-                    :name="$order->CustomerName"
-                    :lastname="$order->CustomerSurname ?? 'blank'"
-                    :phone="$order->CustomerPhoneNumber ?? 'blank'"
-                    :email="$order->CustomerEmail ?? 'blank'"
-                    :orderId="$order->OrderId"
-                />
+
+
             @endforeach
+            <livewire:show-customer-modal />
+            <livewire:show-delivery-modal />
 
         </div>
         {{ $orders->links("pagination::bootstrap-5") }}
@@ -84,20 +87,26 @@
         </div>
         <div>
             @foreach($mostOrderedDish as $dish)
-                <span  disabled class="col" data-most data-method="{{$dish->DishName}}"
+                <span disabled class="col" data-most data-method="{{$dish->DishName}}"
                       data-value="{{$dish->TotalOrders}}"></span>
 
             @endforeach
         </div>
         <div>
+            @foreach($soFarBestMonth as $month)
+                <span disabled class="col" data-month="{{$month->MonthName}}"
+                      data-value="{{$month->TotalOrders}}"></span>
 
+            @endforeach
         </div>
         <div id="chartContainer">
             <canvas id="DeliveryChart"></canvas>
             <canvas id="MostOrderedDishChart"></canvas>
+            <canvas id="SoFarBestThreeMonthsChart"></canvas>
+
 
         </div>
-       
+
 
         @endsection
         @section("jss")
@@ -105,12 +114,16 @@
             <script>
                 const ctx = document.getElementById('DeliveryChart');
                 const ctx2 = document.getElementById('MostOrderedDishChart');
+                const ctx3 = document.getElementById('SoFarBestThreeMonthsChart');
                 var spans = document.querySelectorAll('.col[data-delivery]');
                 var spans2 = document.querySelectorAll('.col[data-most]');
+                var spans3 = document.querySelectorAll('.col[data-month]');
                 labels = [];
                 values = [];
                 labels2 = [];
                 values2 = [];
+                labels3 = [];
+                values3 = [];
                 spans.forEach(function (span) {
                     labels.push(span.getAttribute('data-method'));
                     values.push(span.getAttribute('data-value'));
@@ -118,6 +131,10 @@
                 spans2.forEach(function (span) {
                     labels2.push(span.getAttribute('data-method'));
                     values2.push(span.getAttribute('data-value'));
+                });
+                spans3.forEach(function (span) {
+                    labels3.push(span.getAttribute('data-month'));
+                    values3.push(span.getAttribute('data-value'));
                 });
                 new Chart(ctx, {
                     type: 'doughnut',
@@ -132,13 +149,18 @@
                     options: {
                         scales: {
                             y: {
-                                beginAtZero: true
+                                display: false
+
+                            },
+                            x: {
+                                display: false
                             }
-                        }
+                        },
+                        responsive: true,
                     }
                 });
                 new Chart(ctx2, {
-                    type: 'doughnut',
+                    type: 'bar',
                     data: {
                         labels: labels2,
                         datasets: [{
@@ -148,13 +170,60 @@
                         }]
                     },
                     options: {
+
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    boxWidth: 60,
+
+
+                                },
+                            }
+                        },
+                        responsive: true,
+                        maintainAspectRatio: false,
+                    }
+                });
+                new Chart(ctx3, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels3,
+                        datasets: [{
+                            label: 'Dishes with most orders',
+                            data: values3,
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
                         scales: {
                             y: {
-                                beginAtZero: true
+                                display: false
+
+                            },
+                            x: {
+                                display: false
                             }
-                        }
+                        },
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    boxWidth: 60,
+                                },
+                            }
+                        },
+                        responsive: true,
+                        maintainAspectRatio: false,
                     }
                 });
             </script>
+            <script>
 
+            window.addEventListener('openAddressModal', event => {
+                    $("#addressModal").modal('show');
+                })
+            window.addEventListener('openCustomerModal', event => {
+                $("#customerModal").modal('show');
+            })
+
+            </script>
 @endsection

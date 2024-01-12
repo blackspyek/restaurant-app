@@ -30,6 +30,7 @@
                                wire:model="paymentMethod"
                                data-mdb-ripple-init
                                data-mdb-dismiss="modal"
+                               disabled
                         />
                         <label wire:click="setPaymentType" class="btn btn-secondary paymentMethods text-start" for="przelewyMethod"
                                data-mdb-ripple-init>

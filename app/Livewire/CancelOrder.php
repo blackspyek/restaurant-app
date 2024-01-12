@@ -2,22 +2,21 @@
 
 namespace App\Livewire;
 
-use App\Models\Dish;
 use App\Models\OrderHeader;
 use Livewire\Component;
 
-class AcceptOrder extends Component
+class CancelOrder extends Component
 {
     public $orderId;
 
     public function render()
     {
-        return view('livewire.accept-order');
+        return view('livewire.cancel-order');
     }
-    public function acceptOrder()
+    public function cancelOrder()
     {
         $tempOrder = OrderHeader::find($this->orderId);
-        $tempOrder->order_status_Id = 2;
+        $tempOrder->order_status_Id = 7;
         $tempOrder->save();
 
     }

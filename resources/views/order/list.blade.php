@@ -9,6 +9,8 @@
 @endsection
 
 @section('content')
+    <x-admin-link/>
+
     <div class="bg-color pad100">
         <div class="container">
             <div class="row">

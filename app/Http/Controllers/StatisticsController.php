@@ -37,6 +37,11 @@ class StatisticsController extends Controller
                 ->orderBy('TotalOrders', 'desc')
                 ->limit(5)
                 ->get(),
+            'soFarBestMonth' => OrderHeader::select(DB::raw('MONTHNAME(created_at) as MonthName'), DB::raw('count(*) as TotalOrders'))
+                ->groupBy('MonthName')
+                ->orderBy('TotalOrders', 'desc')
+                ->limit(3)
+                ->get(),
         ]);
     }
 }
