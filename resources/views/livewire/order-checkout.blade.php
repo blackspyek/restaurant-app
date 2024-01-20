@@ -147,6 +147,8 @@
                                         <input wire:model="name" type="text" class="form-control" id="name"
                                                aria-describedby="nameHelp" placeholder="Enter your first and last name"
                                                maxlength="150"
+                                               minlength="6"
+                                               pattern="[A-Za-z]+[ ][A-Za-z]+"
                                                required
                                         >
                                         @error('name') <p class="error">{{ $message }}</p> @enderror

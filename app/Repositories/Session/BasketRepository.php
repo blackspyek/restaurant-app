@@ -85,7 +85,8 @@ class BasketRepository implements BasketRepositoryContract
                     'name' => $dish->dish_name,
                     'price' => $dish->dish_price,
                     'qty' => $qty = $this->basket[$dish->id],
-                    'total' => $dish->dish_price * $qty
+                    'total' => $dish->dish_price * $qty,
+                    'status' => $dish->status
                 ];
             });
 

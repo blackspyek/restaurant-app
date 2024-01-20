@@ -36,7 +36,7 @@ class PizzaIngredients extends Model
         $pizza_ingredients = PizzaIngredients::join('pizza', 'pizza_ingredients_.pizza_id', '=', 'pizza.id')
             ->join('pizza_ingredient', 'pizza_ingredients_.pizza_ingredient_id', '=', 'pizza_ingredient.id')
             ->join('dish', 'pizza.id', '=', 'dish.pizza_id')
-            ->select('dish.id', 'pizza.id as pizza_id','dish.dish_name','dish.dish_price', 'pizza_ingredient.pizza_ingredient_name')
+            ->select('dish.id', 'pizza.id as pizza_id','dish.dish_name','dish.dish_price', 'pizza_ingredient.pizza_ingredient_name', 'dish.status')
             ->get()
             ->groupBy('pizza_id')
             ->map(function ($group) {
@@ -45,6 +45,7 @@ class PizzaIngredients extends Model
                     'pizza_id' => $group->first()->pizza_id,
                     'dish_name' => $group->first()->dish_name,
                     'dish_price' => $group->first()->dish_price,
+                    'status' => $group->first()->status,
                     'ingredients' => $group->pluck('pizza_ingredient_name')->toArray(),
                 ];
             })

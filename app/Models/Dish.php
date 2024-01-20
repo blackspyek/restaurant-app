@@ -15,6 +15,7 @@ class Dish extends Model
         'dish_price',
         'dish_description',
         'dish_type_id',
+        'status',
     ];
     public function dishType()
     {

@@ -122,6 +122,13 @@ class OrderCheckout extends Component
     #[On('submitOrder')]
     public function save()
     {
+        foreach ($this->dishes as $dish) {
+            if ($dish->status == 0 || $dish->status == null)
+            {
+                basket()->clearBasket();
+                return redirect()->route('menu');
+            }
+        }
         $deliveryTypes = [
             'Delivery' => 1,
             'PickUp' => 2,

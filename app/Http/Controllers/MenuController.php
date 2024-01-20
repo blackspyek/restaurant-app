@@ -39,6 +39,10 @@ class MenuController extends Controller
     {
         return view('menuManagementPage');
     }
+    public function disableDish()
+    {
+        return view('menu/disableDishPage');
+    }
 
     public function changeMenuPizza()
     {

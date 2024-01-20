@@ -2,7 +2,11 @@
 
 @section('home-css')
     <link href="{{ asset('build/assets/css/menu.css') }}" rel="stylesheet">
-
+    <style>
+        .card-text{
+            min-height: 20vh;
+        }
+    </style>
 @endsection
 @section("nav")
     <x-logout-button></x-logout-button>
@@ -10,7 +14,6 @@
 @section('content')
 
     <h2>Hello,<br> {{ $user->name }}</h2>
-    @can('isAdmin')
         <div class="card" style="width: 18rem;">
 
             <div class="card-body">
@@ -20,7 +23,6 @@
                 <a href="{{route("changeMenu")}}" class="btn btn-primary">Take me</a>
             </div>
         </div>
-    @endcan
     <div class="card text-left" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">Orders</h5>

@@ -72,9 +72,12 @@
                                 </i>
 
                         @endif
-                            <a href="https://www.google.com/maps/dir/?api=1&origin=Lublin+Nadbystrzycka+21B&destination={{$order['city_name']}}+{{$order['street_name']}}+{{$order['building_number']}}">
-                                <i class="fa-solid fa-map"></i>
-                            </a>
+                            @if( $order["delivery_type_Id"]  == 1)
+                                <a href="https://www.google.com/maps/dir/?api=1&origin=Lublin+Nadbystrzycka+21B&destination={{$order['city_name']}}+{{$order['street_name']}}+{{$order['building_number']}}">
+                                    <i class="fa-solid fa-map"></i>
+                                </a>
+                            @endif
+
                         </div>
 
 

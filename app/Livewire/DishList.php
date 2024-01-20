@@ -34,9 +34,9 @@ class DishList extends Component
 
         $this->model = new Dish();
 
-        $this->dishes = $this->model->all();
+        $this->dishes = $this->model->whereNot('dish_type_id', 4)->get();
 
-        $this->dishTypes = DishType::all("id","dish_type_name");
+        $this->dishTypes = DishType::whereNot('id', 4)->get();
 
         $this->dish_types_id = $this->dishTypes->pluck('id')->toArray();
     }
@@ -58,7 +58,7 @@ class DishList extends Component
         $dish = Dish::find($id);
         if ($dish) {
             $dish->delete();
-            $this->dishes = $this->model->all();
+            $this->dishes = $this->model->whereNot('dish_type_id', 4)->get();
         }
     }
     public function save()
@@ -73,7 +73,7 @@ class DishList extends Component
             'dish_description' => $this->description,
         ]);
 
-        $this->dishes = $this->model->all();
+        $this->dishes = $this->model->whereNot('dish_type_id', 4)->get();
     }
     public function alertConfirm($id) : void
     {

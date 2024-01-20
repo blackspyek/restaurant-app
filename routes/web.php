@@ -46,10 +46,13 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin/statistics/',[StatisticsController::class, 'index'])->name('showStatistics');
 
+    Route::get('/admin/disabledish/',[MenuController::class, 'disableDish'])->name('disableDish');
+    Route::get('/admin/changemenu/',[MenuController::class, 'changeMenu'])->name('changeMenu');
+
+
     Route::middleware(['can:isAdmin'])->group(function (){
         Route::get('/admin/changemenu/pizza',[MenuController::class, 'changeMenuPizza'])->name('changeMenuPizza');
         Route::get('/admin/changemenu/dish',[MenuController::class, 'changeMenuDish'])->name('changeMenuDish');
-        Route::get('/admin/changemenu/',[MenuController::class, 'changeMenu'])->name('changeMenu');
 
 
         Route::get('/admin/changemenu/edit/pizza/{pizza}',[MenuController::class, 'editPizza'])->name('editPizza');

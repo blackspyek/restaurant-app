@@ -3,7 +3,8 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Pizza List</div>
+                <x-admin-link/>
+                <div class="card-header">Dish List</div>
                 <div class="card-body">
                     <div class="row">
                         @foreach($dishes as $dish)
@@ -37,6 +38,7 @@
 
                                 <label for="ingredients">Dish Ingredients</label>
                                 <select id="ingredients" wire:model="type" class="form-control" required>
+                                    <option value="">--Please choose an option--</option>
                                     @foreach($dishTypes as $dtype)
                                         <option value="{{ $dtype["id"] }}">{{ $dtype["dish_type_name"] }}</option>
                                     @endforeach
