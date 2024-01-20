@@ -13,4 +13,9 @@ class AdminController extends Controller
         $user = auth()->user();
         return view('adminMenuPage') -> with('user', $user);
     }
+    public function userList()
+    {
+        return view('admin.userlist');
+
+    }
 }

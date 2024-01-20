@@ -47,9 +47,20 @@ class ShowCustomer extends Component
     {
         if ($this->order["delivery_type_Id"] == 1)
         {
-            $this->dispatch('swal:showCustomer' ,message: 'Customer Data:',text: 'First Name: '.$this->first_name. PHP_EOL.' Last Name: '.$this->last_name. PHP_EOL.' Email: '.$this->email. PHP_EOL.' Phone Number: '.$this->phone_number. PHP_EOL.PHP_EOL.' Street Name: '.$this->street_name. PHP_EOL.' Building Number: '.$this->building_number. PHP_EOL.' City Name: '.$this->city_name. PHP_EOL.' Apartment Number: '.$this->apartment_number. PHP_EOL.' Floor Number: '.$this->floor_number. PHP_EOL.' Zip Code: '.$this->zip_code.'');
+            $this->dispatch('swal:showCustomer' ,message: 'Customer Data:',text:
+                'First Name: '.$this->first_name. PHP_EOL.
+                ' Last Name: '.$this->last_name. PHP_EOL.
+                ' Email: '.$this->email. PHP_EOL.
+                ' Phone Number: '.$this->phone_number. PHP_EOL.PHP_EOL.
+                ' Street Name: '.$this->street_name. PHP_EOL.
+                ' Building Number: '.$this->building_number. PHP_EOL.
+                ' City Name: '.$this->city_name. PHP_EOL.
+                ' Apartment Number: '.$this->apartment_number. PHP_EOL.
+                ' Floor Number: '.$this->floor_number. PHP_EOL.
+                ' Zip Code: '.$this->zip_code. PHP_EOL);
 
         }
+
         else{
             $this->dispatch('swal:showCustomer' ,message: 'Customer Data:',text: 'First Name: '.$this->first_name. PHP_EOL.' Last Name: '.$this->last_name. PHP_EOL.' Email: '.$this->email. PHP_EOL.' Phone Number: '.$this->phone_number);
 

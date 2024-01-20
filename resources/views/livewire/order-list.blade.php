@@ -57,20 +57,36 @@
                 </div>
                 <div class="col">
                     <div>
+
                         <div class="d-flex gap-1" >
                         @if($order["order_status_name"] == "Received")
                             <livewire:accept-order :orderId="$order['order_header_id']" wire:key="accept{{$loop->index}}"/>
                             <livewire:cancel-order :orderId="$order['order_header_id']" wire:key="cancel{{$loop->index}}"/>
+                        @else
+                                <i class="fa-solid fa-gear"
+                                   wire:key="management{{$loop->index}}"
+                                   wire:click="$dispatch('show-order-management-modal', { orderData: {{ $order['order_header_id'] }}, orderStatus:  '{{ $order['order_status_name'] }}' })"
+
+                                   type="button"
+                                   data-mdb-ripple-init data-mdb-modal-init>
+                                </i>
 
                         @endif
+                            <a href="https://www.google.com/maps/dir/?api=1&origin=Lublin+Nadbystrzycka+21B&destination={{$order['city_name']}}+{{$order['street_name']}}+{{$order['building_number']}}">
+                                <i class="fa-solid fa-map"></i>
+                            </a>
                         </div>
-                        <i class="fa-solid fa-gear"></i>
-                        <i class="fa-solid fa-map"></i>
+
+
+
                     </div>
                 </div>
 
             </div>
 
         @endforeach
+            <div wire:ignore>
+                <livewire:show-order-management-modal />
+            </div>
     </div>
 </div>

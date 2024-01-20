@@ -3,6 +3,9 @@
         <div class="loading"></div>
         <div class="waitingContainerChild">
             <h2 class="waitingHeader">
+                Do not close this window !
+            </h2>
+            <h2 class="waitingHeader">
                 Thank you for placing your order with us!
             </h2>
             <p>Our team is diligently reviewing your request. Please hang tight, as we strive to process orders

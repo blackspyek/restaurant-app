@@ -190,11 +190,10 @@ class OrderCheckout extends Component
     }
 
     #[On('orderStatusChanged')]
-    public function showConfirmation($status)
+    public function showConfirmation($status, $eta)
     {
         basket()->clearBasket();
-        return redirect()->route('showThankyou', ["orderStatus" => $status]);
-
+        return redirect()->route('showThankyou', ["orderStatus" => $status, "eta" => $eta]);
 
     }
 

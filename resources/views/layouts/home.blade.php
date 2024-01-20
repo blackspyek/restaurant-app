@@ -51,7 +51,7 @@
 
         </div>
         <div class="collapse nav-content" id="navbarToggleExternalContent">
-            <div class="d-flex nav-style-layout">
+            <div class="d-flex nav-style-layout" style="min-width: 150px">
                 @yield("nav")
             </div>
         </div>

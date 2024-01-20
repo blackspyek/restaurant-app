@@ -84,7 +84,7 @@
             </div>
         @endforeach
 
-
+        <h2>ETA: {{$order["eta"]}} minutes</h2>
         <h2>Order Price: {{$order["total_price"]}}$</h2>
     </div>
 

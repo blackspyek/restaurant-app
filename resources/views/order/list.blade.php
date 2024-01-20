@@ -2,6 +2,8 @@
 
 @section('home-css')
     <link rel="stylesheet" href='{{ asset("build/assets/css/checkout.css") }}'>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js"
+            integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 @endsection
 
 @section('nav')
@@ -55,5 +57,36 @@
                 icon: "info",
             });
         });
+        window.addEventListener('swal:confirmOrder', event => {
+            swal({
+                title: "Are you sure? {{$user->id}}",
+                text: "Please enter how much time to proceed the order:", // Optional text shown above the input
+                content: {
+                    element: "input", // Type of HTML element
+                    attributes: {
+                        placeholder: "Type time in minutes", // Placeholder text for the input
+                        type: "number", // Specify the type as text
+                    },
+                },
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willAccept) => {
+                    if (willAccept) {
+                        const time = willAccept; // The text input value is stored in willAccept
+                        Livewire.dispatch("acceptOrder", {id: event.detail.id, time: time, employeeId: {{$user->id}}});
+                    }
+                });
+        });
+
     </script>
+    <script>
+        window.addEventListener('openManagementModal', event => {
+            $("#managementModal").modal('show');
+        })
+        window.addEventListener('closeManagementModal', event => {
+            $("#managementModal").modal('hide');
+        });
+    </script>
+
 @endsection

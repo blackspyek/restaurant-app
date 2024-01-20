@@ -99,13 +99,13 @@
 
             @endforeach
         </div>
-        <div id="chartContainer">
-            <canvas id="DeliveryChart"></canvas>
-            <canvas id="MostOrderedDishChart"></canvas>
-            <canvas id="SoFarBestThreeMonthsChart"></canvas>
-
-
-        </div>
+        @can('isAdmin')
+            <div id="chartContainer">
+                <canvas id="DeliveryChart"></canvas>
+                <canvas id="MostOrderedDishChart"></canvas>
+                <canvas id="SoFarBestThreeMonthsChart"></canvas>
+            </div>
+        @endcan
 
 
         @endsection

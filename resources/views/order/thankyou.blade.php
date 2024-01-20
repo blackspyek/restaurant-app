@@ -15,6 +15,7 @@
     <div class="d-flex flex-column acceptedInfo">
         @if($params["orderStatus"] == 2)
         <h1 class="acceptedInfoHeader">Great news! Your order has been successfully accepted! 🎉</h1>
+        <h1 class="acceptedInfoHeader">It should be ready in {{$params["eta"]}} minutes!</h1>
         <div class="acceptedInfoChild">
             <p class="acceptedInfoParagraph">Our team is now busy preparing your items for dispatch. </p>
             <p class="acceptedInfoParagraph">You will

@@ -8,7 +8,9 @@ class OrderController extends Controller
 {
     public function showList()
     {
-        return view('order.list');
+        return view('order.list', [
+            'user' => auth()->user(),
+        ]);
     }
 
     public function showCheckout()

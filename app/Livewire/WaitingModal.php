@@ -48,7 +48,7 @@ class WaitingModal extends Component
                     "order_header.order_status_Id as order_status_Id",
                     "order_header.created_at as order_header_created_at",
                     "order_header.received_email",
-
+                    "eta",
                 ])
                 ->map(function ($order) use ($OrderItems) {
                     $order->items = $OrderItems;
@@ -63,7 +63,7 @@ class WaitingModal extends Component
                 Mail::to('ouremail@test.com')->send(new OrderConfirmationEmail($tempOrder));
                 OrderHeader::where('id', $tempOrder["order_header_id"])->update(['received_email' => 1]);
             }
-            $this->dispatch("orderStatusChanged", $tempOrder["order_status_Id"]);
+            $this->dispatch("orderStatusChanged", $tempOrder["order_status_Id"], $tempOrder["eta"]);
         }
     }
 }

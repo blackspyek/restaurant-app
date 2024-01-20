@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Dish;
 use App\Models\OrderHeader;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class AcceptOrder extends Component
@@ -14,10 +15,14 @@ class AcceptOrder extends Component
     {
         return view('livewire.accept-order');
     }
-    public function acceptOrder()
+
+    #[On('acceptOrder')]
+    public function acceptOrder($id, $time, $employeeId)
     {
-        $tempOrder = OrderHeader::find($this->orderId);
+        $tempOrder = OrderHeader::find($id);
         $tempOrder->order_status_Id = 2;
+        $tempOrder->eta = $time;
+        $tempOrder->employee_Id = $employeeId;
         $tempOrder->save();
 
     }
