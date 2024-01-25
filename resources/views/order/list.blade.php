@@ -35,7 +35,9 @@
                                     </div>
 
                                     <livewire:order-list/>
-
+                                    <div wire:ignore>
+                                        <livewire:show-order-management-modal />
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +61,7 @@
         });
         window.addEventListener('swal:confirmOrder', event => {
             swal({
-                title: "Are you sure? {{$user->id}}",
+                title: "Are you sure",
                 text: "Please enter how much time to proceed the order:", // Optional text shown above the input
                 content: {
                     element: "input", // Type of HTML element

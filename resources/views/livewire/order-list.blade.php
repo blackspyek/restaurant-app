@@ -88,8 +88,6 @@
             </div>
 
         @endforeach
-            <div wire:ignore>
-                <livewire:show-order-management-modal />
-            </div>
+
     </div>
 </div>
