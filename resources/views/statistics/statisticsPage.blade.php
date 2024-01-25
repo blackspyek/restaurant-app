@@ -21,6 +21,22 @@
 @section('content')
     <x-admin-link/>
     <div class="container">
+        <form action="{{ route('showStatistics') }}" method="get">
+            <div class="row">
+                <div class="col-md-10">
+                    <input type="text" class="form-control mb-3" placeholder="search" name="q">
+                </div>
+                <div class="col-md-2">
+                    <input type="submit" class="form-control mb-3" value="Search">
+                </div>
+                @if($request->q != null)
+                <div class="col-md-2">
+                    Query: {{ $request->q }}
+                    <a href="{{ route('showStatistics') }}" class="btn btn-danger ms-2" >Reset</a>
+                </div>
+                @endif
+            </div>
+        </form>
         <div class="row gap-3">
             <div class="row">
                 <span class="col">Date</span>
@@ -76,7 +92,7 @@
             <livewire:show-delivery-modal />
 
         </div>
-        {{ $orders->links("pagination::bootstrap-5") }}
+        {{ $orders->withQueryString()->links("pagination::bootstrap-5") }}
         <div>
             @foreach($deliveryStats as $delivery)
                 <span style="display: none" disabled class="col" data-delivery

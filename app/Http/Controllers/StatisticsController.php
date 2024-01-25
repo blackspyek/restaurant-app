@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\OrderDetail;
 use App\Models\OrderHeader;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class StatisticsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return view('statistics.statisticsPage', [
             'orders' => OrderHeader::join('customer', 'customer.id', '=', 'order_header.customer_Id')
@@ -26,6 +27,13 @@ class StatisticsController extends Controller
                 "order_status.Order_status_name as OrderStatusName", "address.city_name as CityName", "address.street_name as StreetName",
                 "address.building_number as BuildingNumber", "address.apartment_number as ApartmentNumber", "address.zip_code as ZipCode",
                 "address.floor_number as FloorNumber")
+                ->when($request->q,function(Builder $builder) use($request){
+                    $builder->where('order_header.id','=',"{$request->q}")
+                        ->orWhere('customer.Email','=',"{$request->q}")
+                        ->orWhere('customer.Phone_number','=',"{$request->q}");
+                })
+
+                ->orderBy('order_header.created_at', 'desc')
                 ->paginate(3),
             'deliveryStats' => OrderHeader::join('delivery_type', "delivery_type.id", '=', 'order_header.delivery_type_Id')
                 ->select('Delivery_method_name', DB::raw('count(*) as count'))
@@ -42,6 +50,7 @@ class StatisticsController extends Controller
                 ->orderBy('TotalOrders', 'desc')
                 ->limit(3)
                 ->get(),
+            'request' => $request
         ]);
     }
 }
