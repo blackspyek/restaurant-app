@@ -26,7 +26,7 @@ class MenuController extends Controller
         $allPastas = $allDishes->where('dish_type_id', 1);
         $allAppetizers = $allDishes->where('dish_type_id', 2);
         $allDesserts = $allDishes->where('dish_type_id', 3);
-        return view('menuPage', [
+        return view('menu.menuPage', [
             'pizzas' => PizzaIngredients::getPizzaWithIngridients(),
             'pastas' => $allPastas,
             'appetizers' => $allAppetizers,
@@ -37,7 +37,7 @@ class MenuController extends Controller
 
     public function changeMenu()
     {
-        return view('menuManagementPage');
+        return view('admin.menuManagementPage');
     }
     public function disableDish()
     {
@@ -46,7 +46,7 @@ class MenuController extends Controller
 
     public function changeMenuPizza()
     {
-        return view('menuAdminPage');
+        return view('pizzaList');
     }
 
     public function changeMenuDish()
@@ -54,18 +54,12 @@ class MenuController extends Controller
         return view('dishAdminPage');
     }
 
-    public function changeMenuDishType()
-    {
-        return view('dishTypeAdminMenu');
-    }
-
-
     /**
      * Show the form for editing the specified resource.
      */
     public function editPizza(string $id)
     {
-        return view('menuEditPage', [
+        return view('pizzaEditPage', [
             'OnPizzaIngredients' => PizzaIngredients::getArrayOfIngredients($id),
             'pizza' => Pizza::find($id),
             'piizzas_ingredients' => PizzaIngredient::all("id", "pizza_ingredient_name"),
