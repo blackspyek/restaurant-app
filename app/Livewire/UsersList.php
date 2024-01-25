@@ -12,7 +12,7 @@ class UsersList extends Component
     public function render()
     {
         return view('livewire.users-list', [
-            'users' => User::all(),
+            'users' => User::paginate(6),
         ] );
     }
     #[On('deleteUser')]

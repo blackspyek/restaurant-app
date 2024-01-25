@@ -83,6 +83,8 @@
                         <livewire:statistic-buttons
                         :order="$order"
                         />
+
+
                     </div>
                 </div>
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StatisticsController;
 use App\Http\Livewire\NotificationSweetAlert;
 use Illuminate\Support\Facades\Route;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 /*
@@ -28,10 +29,6 @@ Route::get('/', function () {
     return view('homePage');
 })->name('homePage');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::get('/menu',[MenuController::class, 'index'])->name('menu');
 
 Route::get('/order/checkout',[OrderController::class, 'showCheckout'])->name('showCheckout');
@@ -45,6 +42,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin',[AdminController::class, 'show'])->name('adminMenu');
 
     Route::get('/admin/statistics/',[StatisticsController::class, 'index'])->name('showStatistics');
+
+    Route::get('/admin/statistics/receipt/{id}',[StatisticsController::class, 'generateReceipt'])->name('generateReceipt');
 
     Route::get('/admin/disabledish/',[MenuController::class, 'disableDish'])->name('disableDish');
     Route::get('/admin/changemenu/',[MenuController::class, 'changeMenu'])->name('changeMenu');

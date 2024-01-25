@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\OrderDetail;
 use App\Models\OrderHeader;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -52,5 +53,21 @@ class StatisticsController extends Controller
                 ->get(),
             'request' => $request
         ]);
+    }
+    public function generateReceipt($orderId)
+    {
+        $order = OrderDetail::where('order_header_Id', '=', $orderId)
+            ->join('dish', 'dish.id', '=', 'order_detail.dish_Id')
+            ->select('dish.dish_name as DishName', 'order_detail.quantity as Quantity', 'order_detail.price as Price')
+            ->get();
+       $data = [
+           'order' => $order,
+           'orderId' => $orderId,
+           'totalPrice' => OrderHeader::where('id', '=', $orderId)->select('total_price')->first()->total_price,
+           'date' => date('m/d/Y')
+       ];
+
+       $pdf = PDF::loadView('statistics.receiptPDF', $data);
+       return $pdf->stream();
     }
 }
